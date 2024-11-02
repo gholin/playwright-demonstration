@@ -1,11 +1,14 @@
 import { defineConfig, devices } from '@playwright/test';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
+import fs from 'fs';
 
-dotenv.config({ path: `.env` });
+const envPath = path.resolve(__dirname, '.env');
+dotenv.config({ path: envPath });
 
 export default defineConfig({
   testDir: './tests',
+  outputDir: './screenshots',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,
@@ -16,11 +19,11 @@ export default defineConfig({
     trace: 'retain-on-failure',
     actionTimeout: 10_000,
     navigationTimeout: 10_000,
-    // baseURL: 'http://127.0.0.1:3000',
+    baseURL: process.env.BASE_URL,
     screenshot: 'only-on-failure',
 
   },
-
+  // globalSetup: require.resolve('./global.setup.ts'),
   projects: [
     {
       name: 'chrome',
@@ -33,9 +36,11 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+  webServer: {
+    command: 'npm run start',
+    url: process.env.BASE_URL,
+    cwd: '../frontend',
+    timeout: 20_000,
+    reuseExistingServer: !process.env.CI,
+  },
 });
