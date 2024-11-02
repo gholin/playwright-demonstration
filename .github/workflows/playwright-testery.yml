@@ -1,0 +1,31 @@
+name: Playwright Tests
+on:
+  workflow_dispatch:
+    inputs: {}
+  pull_request:
+    branches: [main]
+    types: [opened, ready_for_review]
+env:
+  REF: ${{ github.event.pull_request.head.sha }}
+  BRANCH: ${{ github.event.pull_request.head.ref }}
+jobs:
+  test_dev:
+    environment: test
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install testery
+        run: pip install testery --upgrade
+      - name: Run Playwright tests against dev
+        run:
+          testery create-test-run --token "${{ secrets.TESTERY_TOKEN }}" --project-key "demo" --environment-key "dev" --git-ref "$REF" --git-branch "$BRANCH" --test-suite "Demo - Dev" --status-name "Dev Regression"
+  test_prod:
+    environment: test
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install testery
+        run: pip install testery --upgrade
+      - name: Run Playwright tests against prod
+        run:
+          testery create-test-run --token "${{ secrets.TESTERY_TOKEN }}" --project-key "demo" --environment-key "prod" --git-ref "$REF" --git-branch "$BRANCH" --test-suite "Demo -  Prod" --status-name "Prod Regression"

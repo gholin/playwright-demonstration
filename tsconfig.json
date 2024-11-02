@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@lib/*": ["lib/*"],
+      "@api/*": ["lib/api/*"],
+      "@api/helpers": ["lib/api/api1/api1-index.ts"],
+      "@fixtures/*": ["lib/fixtures/*"],
+      "@demo/test": ["lib/fixtures/index.ts"],
+      "@models": ["lib/models/model-index.ts"],
+      "@page-objects/*": ["lib/page-objects/*"],
+      "@pages": ["lib/page-objects/page-object-index.ts"],
+      "@constants/*": ["lib/constants/*"],
+      "@data-sources/*": ["lib/data-sources/*"],
+      "@helpers/*": ["lib/helpers/*"],
+      "@demo/helpers": ["lib/helpers/utility-helpers"],
+    },
+  },
+}
