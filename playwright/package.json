@@ -140,7 +140,7 @@
   },
   "scripts": {
     "test": "npx playwright test",
-    "smoke": "npx playwright test tests/ --grep '@@smoke'"
+    "smoke": "npx playwright test tests/ --grep '@smoke'"
   },
   "keywords": [],
   "author": "Steve Shepherd (stevenmshepherd@yahoo.com)",
