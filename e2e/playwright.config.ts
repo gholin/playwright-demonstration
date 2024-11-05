@@ -38,7 +38,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run start',
     url: process.env.BASE_URL,
-    cwd: '../frontend',
+    cwd: '../app',
     timeout: 20_000,
     reuseExistingServer: !process.env.CI,
   },
