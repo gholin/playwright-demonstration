@@ -1,4 +1,4 @@
-import { expect, type Locator, type Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 
 export class LoginPage { 
   readonly url: string;
@@ -9,9 +9,14 @@ export class LoginPage {
     this.url = `${process.env.BASE_URL}`;
   }
 
-  async visit() {
+  async visit(): Promise<void> {
     await this.page.goto(this.url);
     await this.page.waitForLoadState();
   }
 
+  async loginAsUser(username: string, password: string): Promise<void> {
+    await this.page.getByTestId('usernameInput').fill(username);
+    await this.page.getByTestId('passwordInput').fill(password);
+    await this.page.getByRole("button", {name: 'Sign In'}).click();
+  }
 }
