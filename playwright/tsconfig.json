@@ -8,6 +8,8 @@
     "paths": {
       "@lib/*": ["lib/*"],
       "@demo/test": ["lib/fixtures/index.ts"],
+      "@pages": ["lib/page-objects/page-object-index.ts"],
+      "@utilities/*": ["lib/utilities/*"]
     },
   },
 }

@@ -1,7 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
-import fs from 'fs';
 
 const envPath = path.resolve(__dirname, '.env');
 dotenv.config({ path: envPath });
